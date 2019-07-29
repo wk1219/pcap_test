@@ -3,19 +3,19 @@
 #include <pcap.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
-#define EthernetSize 14
-#define ipType 0x0800
-#define arpType 0x0806
-#define tcpType 006
+#define EthernetSize 14 // Ethenet Header Size
+#define ipType 0x0800   // IP TYPE 0x0800
+#define arpType 0x0806  // ARP TYPE 0x0806
+#define tcpType 0x0006  // TCP TYPE 0x0006
 
 struct ethernet{
-    u_char Dmac[6];
-    u_char Smac[6];
-    uint16_t etype[2];
+    uint8_t Dmac[6];
+    uint8_t Smac[6];
+    uint16_t etype;
 };
 
 struct Ip{
-    u_char length;
+    uint8_t length;
     uint8_t seviceField;
     uint8_t totalLength[2];
     uint16_t Id;
@@ -30,9 +30,9 @@ struct Ip{
 struct Tcp{
     uint8_t Sport[2];
     uint8_t Dport[2];
-    uint8_t SequenceNumber[4];
-    uint8_t AcknowledgmentNumber[4];
-    uint Flag;
+    uint32_t SequenceNumber;
+    uint32_t AcknowledgmentNumber;
+    uint8_t Flag;
     uint8_t WindowSize[2];
     uint8_t checksum[2];
     uint8_t urgent[2];

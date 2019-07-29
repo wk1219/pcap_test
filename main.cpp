@@ -1,7 +1,6 @@
 #include "mypcap.h"
 #include <stdio.h>
 
-
 void usage() {
   printf("syntax: pcap_test <interface>\n");
   printf("sample: pcap_test wlan0\n");
